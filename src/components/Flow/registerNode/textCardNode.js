@@ -241,6 +241,7 @@ const textCardNode = () => {
 
         // 绘制节点
         draw(cfg, group) {
+            // eslint-disable-next-line no-console
             console.log("当前节点data:{}", cfg)
             // 背景
             const shape = this.drawBackground(cfg, group);
