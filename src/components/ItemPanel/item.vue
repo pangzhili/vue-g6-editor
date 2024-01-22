@@ -40,13 +40,11 @@ export default {
           y: 0,
           shape: "customNode",
           color: "#1890ff",
-          image:
-              "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
+          image: "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
           stateImage: okSvg,
           inPoints: [[0, 0.5]],
           outPoints: [[1, 0.5]]
         },
-
         {
           name: "背景图片节点",
           label: "背景图片节点",
@@ -56,8 +54,7 @@ export default {
           y: 0,
           shape: "customNode",
           color: "#1890ff",
-          image:
-              "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
+          image: "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
           stateImage: okSvg,
           backImage: bgImg,
           inPoints: [[0, 0.5]],
@@ -72,8 +69,7 @@ export default {
           y: 0,
           shape: "customNode",
           color: "#1890ff",
-          image:
-              "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
+          image: "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
           stateImage: okSvg,
           inPoints: [[0, 0.5]],
           outPoints: [[1, 0.4], [1, 0.6]]
@@ -87,8 +83,7 @@ export default {
           y: 0,
           shape: "customNode",
           color: "#1890ff",
-          image:
-              "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
+          image: "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
           stateImage: okSvg,
           inPoints: [[0, 0.5]],
           outPoints: [[1, 0.5]]
@@ -102,8 +97,7 @@ export default {
           y: 0,
           shape: "customNode",
           color: "#1890ff",
-          image:
-              "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
+          image: "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
           stateImage: okSvg,
           outPoints: [[1, 0.5]],
           isDoingStart: true
@@ -117,8 +111,7 @@ export default {
           y: 0,
           shape: "customNode",
           color: "#1890ff",
-          image:
-              "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
+          image: "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
           stateImage: okSvg,
           inPoints: [[0, 0.5]],
           isDoingEnd: true
@@ -140,6 +133,28 @@ export default {
           enName: "hotel_mile_sorders_rate",
           groupType: 3,
           period: '1h',
+          card: {value: "109.00", dodRate: "-209.68%", wowRate: "430.42%", hohRate: "230.03%", time: "14:30 - 14:35"},
+          viewComparison: ["dod", "wow"],
+          table: {},
+          trend: {},
+        },
+        {
+          label: "表格",
+          size: "380*250",
+          type: "node",
+          x: 0,
+          y: 0,
+          shape: "tableNode",
+          color: "#1890ff",
+          image: "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
+          inPoints: [[0, 0.5]],
+          outPoints: [[1, 0.5]],
+          isDoingStart: true,
+          id: 53,
+          name: "国内酒店抵扣有效订单比（离店）",
+          enName: "hotel_mile_sorders",
+          groupType: 3,
+          period: '1d',
           card: {value: "109.00", dodRate: "-209.68%", wowRate: "430.42%", hohRate: "230.03%", time: "14:30 - 14:35"},
           viewComparison: ["dod", "wow"],
           table: {},
