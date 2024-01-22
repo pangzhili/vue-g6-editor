@@ -65,6 +65,8 @@ export default {
             "customer-events",
             "add-menu",
             "drag-node",
+            // 表格下滑滚动
+            "table-scroll"
           ],
           mulitSelect: ["mulit-select"],
           addEdge: ["add-edge"],

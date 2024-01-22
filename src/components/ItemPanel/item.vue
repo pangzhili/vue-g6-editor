@@ -159,6 +159,35 @@ export default {
           viewComparison: ["dod", "wow"],
           table: {},
           trend: {},
+          attrs: [{
+            key: "id",
+            type: "number(6)"
+          },
+            {
+              "key": "key",
+              "type": "varchar(255)"
+            },
+            {
+              "key": "gender",
+              "type": "enum(M, F)"
+            },
+            {
+              "key": "birthday",
+              "type": "date"
+            },
+            {
+              "key": "hometown",
+              "type": "varchar(255)"
+            },
+            {
+              "key": "country",
+              "type": "varchar(255)"
+            },
+            {
+              "key": "nation",
+              "type": "varchar(255)"
+            }
+          ]
         },
       ]
     };
