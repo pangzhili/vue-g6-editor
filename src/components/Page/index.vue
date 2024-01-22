@@ -57,7 +57,7 @@ export default {
           // 支持的 behavior
           default: [
             "drag-canvas",
-            "zoom-canvas",
+            // "zoom-canvas",
             "hover-node",
             "select-node",
             "hover-edge",
