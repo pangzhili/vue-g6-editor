@@ -1,18 +1,18 @@
 <template>
   <ul>
     <li
-      v-for="(item,index) in list"
-      :key="index"
-      class="getItem"
-      :data-shape="item.shape"
-      :data-type="item.type"
-      :data-size="item.size"
-      draggable
-      @dragstart="handleDragstart"
-      @dragend="handleDragEnd($event,item)"
+        v-for="(item,index) in list"
+        :key="index"
+        class="getItem"
+        :data-shape="item.shape"
+        :data-type="item.type"
+        :data-size="item.size"
+        draggable
+        @dragstart="handleDragstart"
+        @dragend="handleDragEnd($event,item)"
     >
       <span class="pannel-type-icon" :style="{background:'url('+item.image+')'}"></span>
-      {{item.name}}
+      {{ item.name }}
     </li>
   </ul>
 </template>
@@ -72,7 +72,7 @@ export default {
           shape: "customNode",
           color: "#1890ff",
           image:
-            "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
+              "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
           stateImage: okSvg,
           inPoints: [[0, 0.5]],
           outPoints: [[1, 0.5]]
@@ -88,7 +88,7 @@ export default {
           shape: "customNode",
           color: "#1890ff",
           image:
-            "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
+              "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
           stateImage: okSvg,
           backImage: bgImg,
           inPoints: [[0, 0.5]],
@@ -104,7 +104,7 @@ export default {
           shape: "customNode",
           color: "#1890ff",
           image:
-            "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
+              "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
           stateImage: okSvg,
           inPoints: [[0, 0.5]],
           outPoints: [[1, 0.4], [1, 0.6]]
@@ -119,7 +119,7 @@ export default {
           shape: "customNode",
           color: "#1890ff",
           image:
-            "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
+              "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
           stateImage: okSvg,
           inPoints: [[0, 0.5]],
           outPoints: [[1, 0.5]]
@@ -134,7 +134,7 @@ export default {
           shape: "customNode",
           color: "#1890ff",
           image:
-            "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
+              "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
           stateImage: okSvg,
           outPoints: [[1, 0.5]],
           isDoingStart: true
@@ -149,7 +149,7 @@ export default {
           shape: "customNode",
           color: "#1890ff",
           image:
-            "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
+              "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
           stateImage: okSvg,
           inPoints: [[0, 0.5]],
           isDoingEnd: true
@@ -164,9 +164,31 @@ export default {
           shape: "testNode",
           color: "#1890ff",
           image:
-            "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
+              "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
           inPoints: [[0, 0.5]],
           isDoingEnd: true
+        },
+        {
+          label: "文本卡",
+          size: "290*90",
+          type: "node",
+          x: 0,
+          y: 0,
+          shape: "textCardNode",
+          color: "#1890ff",
+          image: "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
+          inPoints: [[0, 0.5]],
+          outPoints: [[1, 0.5]],
+          isDoingStart: true,
+          id: 58,
+          name: "国内酒店抵扣有效订单比（创单）",
+          enName: "hotel_mile_sorders_rate",
+          groupType: 3,
+          period: '1h',
+          card: {value: "109.00", dodRate: "-209.68%", wowRate: "430.42%", hohRate: "230.03%", time: "14:30 - 14:35"},
+          viewComparison: ["dod", "wow"],
+          table: {},
+          trend: {},
         },
       ]
     };
@@ -218,10 +240,12 @@ export default {
   padding-top: 8px;
   border-right: 1px solid #e6e9ed;
 }
+
 .itempannel ul {
   padding: 0px;
   padding-left: 16px;
 }
+
 .itempannel li {
   color: rgba(0, 0, 0, 0.65);
   border-radius: 4px;
@@ -232,6 +256,7 @@ export default {
   border: 1px solid rgba(0, 0, 0, 0);
   list-style-type: none;
 }
+
 .itempannel li:hover {
   background: white;
   border: 1px solid #ced4d9;
