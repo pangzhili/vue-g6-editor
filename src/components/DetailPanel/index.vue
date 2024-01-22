@@ -7,11 +7,11 @@
           <el-row :gutter="10">
             <el-col :span="8">名称</el-col>
             <el-col :span="16">
-              <el-input v-model="node.label" @change="handleChangeName" />
+              <el-input v-model="node.label" @change="handleChangeName"/>
             </el-col>
             <el-col :span="8">任意属性</el-col>
             <el-col :span="16">
-              <el-input v-model="node.xxx" />
+              <el-input v-model="node.xxx"/>
             </el-col>
           </el-row>
         </div>
@@ -22,20 +22,6 @@
           <el-checkbox v-model="showGrid" @change="changeGridState">网格对齐</el-checkbox>
         </div>
       </div>
-      <!-- <div v-if="status==='group-selected'" class="pannel" id="node_detailpannel">
-        <div class="pannel-title">群组详情</div>
-        <div class="block-container">
-          <div class="p">
-            名称：
-            <el-input v-model="name" />
-          </div>
-          <div class="p">
-            任意属性：
-            <el-input v-model="color" />
-          </div>
-        </div>
-      </div>
-      -->
     </div>
   </div>
 </template>
@@ -44,12 +30,8 @@
 import G6 from '@antv/g6';
 import eventBus from "../../utils/eventBus";
 
-console.log()
+const {Grid} = G6;
 
-const { Grid } = G6;
-
-/* TODO: 为节点添加属性，属性内容由详细设计和接口中确定
-*/
 export default {
   data() {
     return {
@@ -67,7 +49,8 @@ export default {
     this.bindEvent();
   },
   methods: {
-    init() {},
+    init() {
+    },
     bindEvent() {
       let self = this;
       eventBus.$on("afterAddPage", page => {
@@ -115,15 +98,18 @@ export default {
   width: 200px;
   border-left: 1px solid #e6e9ed;
 }
+
 .detailpannel .block-container {
   padding: 16px 8px;
 }
+
 .block-container .el-col {
   height: 28px;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
 }
+
 .pannel-title {
   height: 32px;
   border-top: 1px solid #dce3e8;

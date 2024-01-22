@@ -272,10 +272,10 @@ const textCardNode = () => {
             const shape = group.get("children")[0];
 
             const children = group.findAll((g) => {
-                return g._attrs.parent === shape._attrs.id;
+                return g.attrs.parent === shape.attrs.id;
             });
             const circles = group.findAll((circle) => {
-                return circle._attrs.isInPoint || circle._attrs.isOutPoint;
+                return circle.attrs.isInPoint || circle.attrs.isOutPoint;
             });
             const selectStyles = () => {
                 shape.attr("fill", "#f3f9ff");

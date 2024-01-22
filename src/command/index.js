@@ -1,11 +1,14 @@
-import { uniqueId } from '../utils'
+import {uniqueId} from '../utils'
+
 class command {
     editor = null;
     undoList = []
     redoList = []
+
     constructor(editor) {
         this.editor = editor;
     }
+
     executeCommand(key, datas) {
         const list = []
         datas.map(data => {
@@ -36,12 +39,13 @@ class command {
             this.doCommand(key, model)
 
         });
-        this.undoList.push({ key, datas: list })
-        if(key==='delete'){
-            this.redoList =[]
+        this.undoList.push({key, datas: list})
+        if (key === 'delete') {
+            this.redoList = []
         }
-        this.editor.emit(key, { undoList: this.undoList, redoList: this.redoList })
+        this.editor.emit(key, {undoList: this.undoList, redoList: this.redoList})
     }
+
     doCommand(key, data) {
         switch (key) {
             case 'add':
@@ -55,15 +59,19 @@ class command {
                 break
         }
     }
+
     add(type, item) {
         this.editor.add(type, item)
     }
+
     update(item, model) {
         this.editor.update(item, model)
     }
+
     remove(item) {
         this.editor.remove(item)
     }
+
     undo() {
         const undoData = this.undoList.pop()
         const edgeList = []
@@ -89,9 +97,10 @@ class command {
             list.push(edge)
             this.doundo(undoData.key, edge)
         }
-        this.redoList.push({ key: undoData.key, datas: list })
-        this.editor.emit(undoData.key, { undoList: this.undoList, redoList: this.redoList })
+        this.redoList.push({key: undoData.key, datas: list})
+        this.editor.emit(undoData.key, {undoList: this.undoList, redoList: this.redoList})
     }
+
     doundo(key, data) {
         switch (key) {
             case 'add':
@@ -105,6 +114,7 @@ class command {
                 break
         }
     }
+
     redo() {
         const redoData = this.redoList.pop()
         const list = []
@@ -130,10 +140,11 @@ class command {
             list.push(edge)
             this.doredo(redoData.key, edge)
         }
-        this.undoList.push({ key: redoData.key, datas: list })
+        this.undoList.push({key: redoData.key, datas: list})
 
-        this.editor.emit(redoData.key, { undoList: this.undoList, redoList: this.redoList })
+        this.editor.emit(redoData.key, {undoList: this.undoList, redoList: this.redoList})
     }
+
     doredo(key, data) {
         switch (key) {
             case 'add':
@@ -147,6 +158,7 @@ class command {
                 break
         }
     }
+
     delete(item) {
         this.executeCommand('delete', [item])
     }

@@ -1,7 +1,6 @@
 import G6 from "@antv/g6";
 import hoverNode from './hover-node'
 import addLine from './add-edge'
-// import dragItem from './drag-item'
 import selectNode from './select-node'
 import hoverEdge from "./hover-edge";
 import keyboard from './keyboard'
@@ -14,9 +13,9 @@ const behavors = {
     // 'drag-item': dragItem,
     'select-node': selectNode,
     'hover-edge': hoverEdge,
-    'keyboard':keyboard,
-    'mulit-select':mulitSelect,
-    'add-menu':addMenu
+    'keyboard': keyboard,
+    'mulit-select': mulitSelect,
+    'add-menu': addMenu
 }
 
 export function initBehavors() {
@@ -24,5 +23,3 @@ export function initBehavors() {
         G6.registerBehavior(key, behavors[key])
     }
 }
-
-

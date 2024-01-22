@@ -2,12 +2,6 @@
   <div id="navigator">
     <div class="pannel-title">导航器</div>
     <div id="minimap" class="minimap" ref="minimap"></div>
-    <!-- <div id="zoom-slider">
-      <a class="zoom-dropdown-btn ant-dropdown-trigger" href="#">
-        100 %
-        <i class="anticon anticon-down"></i>
-      </a>
-    </div> -->
   </div>
 </template>
 
@@ -15,7 +9,7 @@
 import G6 from "@antv/g6";
 import eventBus from "../../utils/eventBus";
 
-const { Minimap } = G6;
+const {Minimap} = G6;
 
 export default {
   data() {
@@ -37,7 +31,7 @@ export default {
       const cfgs = {
         container: "minimap"
       };
-      this.minimap = new Minimap({ ...cfgs });
+      this.minimap = new Minimap({...cfgs});
     },
     bindEvent() {
       eventBus.$on("afterAddPage", page => {
@@ -49,7 +43,7 @@ export default {
       if (!this.minimap || !this.graph) {
         return;
       }
-     this.graph.addPlugin(this.minimap)
+      this.graph.addPlugin(this.minimap)
     }
   }
 };
@@ -58,10 +52,9 @@ export default {
 <style scoped>
 #navigator {
   width: 200px;
-  /* height: 176px; */
   position: absolute;
-  bottom: 0px;
-  right: 0px;
+  bottom: 0;
+  right: 0;
   z-index: 3;
 }
 

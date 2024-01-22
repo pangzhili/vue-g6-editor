@@ -1,14 +1,13 @@
 <template>
-  <div />
+  <div/>
 </template>
 
 <script>
 import registerNode from "./registerNode";
 import customEdge from "./customEdge";
-import teamNode from './teamNode'
 
 export default {
-  name:'Flow',
+  name: 'Flow',
   data() {
     return {
       page: null
@@ -21,10 +20,7 @@ export default {
     init() {
       registerNode();
       customEdge.init();
-      teamNode.init();
     }
   }
 };
 </script>
-
-

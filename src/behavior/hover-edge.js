@@ -60,15 +60,14 @@ export default {
             if (self.shouldUpdate.call(self, e)) {
                 graph.setItemState(item, 'selected', false);
             }
-            eventBus.$emit('nodeselectchange', { target: item, select: false });
+            eventBus.$emit('nodeselectchange', {target: item, select: false});
         } else {
             if (self.shouldUpdate.call(self, e)) {
                 graph.setItemState(item, 'selected', true);
             }
-            eventBus.$emit('nodeselectchange', { target: item, select: true });
+            eventBus.$emit('nodeselectchange', {target: item, select: true});
         }
         graph.setAutoPaint(autoPaint);
         graph.paint();
     },
-
 };

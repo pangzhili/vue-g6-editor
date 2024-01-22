@@ -1,22 +1,22 @@
 <template>
   <div id="mountNode" :style="{width:width}">
-    <div class="editor" >
-      <context-menu />
+    <div class="editor">
+      <context-menu/>
       <!--toolbar-->
-      <toolbar />
+      <toolbar/>
       <div style="height: 42px;"></div>
       <div class="bottom-container">
         <!--itempannel-->
-        <item-panel />
+        <item-panel/>
         <!--detailpannel-->
-        <detail-panel />
+        <detail-panel/>
         <!--miniMap-->
-        <minimap />
+        <minimap/>
         <!--page-->
-        <page :height="height" :width="width"  :data="data" />
+        <page :height="height" :width="width" :data="data"/>
       </div>
     </div>
-    <Flow />
+    <Flow/>
   </div>
 </template>
 
@@ -30,6 +30,7 @@ import Flow from "../Flow"
 import ContextMenu from "../ContextMenu";
 import Editor from "../Base/Editor";
 import command from "../../command";
+
 export default {
   name: "G6Editor",
   components: {
@@ -52,7 +53,8 @@ export default {
     },
     data: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     }
   },
   created() {
@@ -82,6 +84,7 @@ export default {
   -webkit-user-select: none;
   -ms-user-select: none;
 }
+
 .bottom-container {
   position: relative;
 }

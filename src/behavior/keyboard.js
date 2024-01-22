@@ -1,4 +1,5 @@
 import eventBus from "../utils/eventBus";
+
 export default {
     getDefaultCfg() {
         return {
@@ -12,7 +13,6 @@ export default {
             keydown: 'onKeyDown'
         };
     },
-
     onKeyDown(e) {
         const code = e.keyCode || e.which;
         switch (code) {

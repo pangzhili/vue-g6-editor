@@ -1,8 +1,6 @@
 import * as Util from '@antv/util'
 import eventBus from "../utils/eventBus";
 
-console.log(Util)
-
 export default {
     getDefaultCfg() {
         return {
@@ -41,13 +39,13 @@ export default {
             if (self.shouldUpdate.call(self, e)) {
                 graph.setItemState(item, 'selected', false);
             }
-          
-            eventBus.$emit('nodeselectchange', { target: item, select: false });
+
+            eventBus.$emit('nodeselectchange', {target: item, select: false});
         } else {
             if (self.shouldUpdate.call(self, e)) {
                 graph.setItemState(item, 'selected', true);
             }
-            eventBus.$emit('nodeselectchange', { target: item, select: true });
+            eventBus.$emit('nodeselectchange', {target: item, select: true});
         }
         graph.setAutoPaint(autoPaint);
         graph.paint();
@@ -59,13 +57,13 @@ export default {
         const selected = graph.findAllByState('node', 'selected');
         Util.each(selected, node => {
             graph.setItemState(node, 'selected', false);
-            eventBus.$emit('nodeselectchange', { target: node, select: false });
+            eventBus.$emit('nodeselectchange', {target: node, select: false});
         });
 
         const selectedEdges = graph.findAllByState('edge', 'selected');
         Util.each(selectedEdges, edge => {
             graph.setItemState(edge, 'selected', false);
-            eventBus.$emit('nodeselectchange', { target: edge, select: false });
+            eventBus.$emit('nodeselectchange', {target: edge, select: false});
         })
 
         graph.paint();

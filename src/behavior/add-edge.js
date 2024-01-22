@@ -1,7 +1,5 @@
-
-// import { transform } from '@antv/matrix-util';
 import eventBus from "../utils/eventBus";
-import { uniqueId } from '../utils'
+import {uniqueId} from '../utils'
 
 let startPoint = null
 let startItem = null
@@ -41,7 +39,7 @@ export default {
             if (activeItem) {
                 const endX = parseInt(curInPoint.attrs.x)
                 const endY = parseInt(curInPoint.attrs.y)
-                endPoint = { x: endX, y: endY };
+                endPoint = {x: endX, y: endY};
                 if (this.edge) {
                     this.graph.removeItem(this.edge);
                     const model = {
@@ -110,7 +108,7 @@ export default {
             })
             const startX = parseInt(e.target.attrs.x)
             const startY = parseInt(e.target.attrs.y)
-            startPoint = { x: startX, y: startY };
+            startPoint = {x: startX, y: startY};
             startItem = item
             this.edge = this.graph.addItem('edge', {
                 source: item,
@@ -120,11 +118,10 @@ export default {
                 shape: 'link-edge'
             });
         } else {
-            const point = { x: e.x, y: e.y };
+            const point = {x: e.x, y: e.y};
             if (this.edge) {
                 // 增加边的过程中，移动时边跟着移动
                 this.graph.updateItem(this.edge, {
-                    //  start: startPoint,
                     target: point
                 });
             }
@@ -135,14 +132,6 @@ export default {
         if (item && item.getType() === 'node') {
             if (e.target.attrs.isInPointOut && !this.hasTran) {
                 this.hasTran = true
-                // const m = e.target.getTotalMatrix();
-                // const m2 = transform(m, [
-                //     ['t', 0, 3],
-                //     ['s', 1.2, 1.2],
-                // ]);
-                // console.log(m)
-                // console.log(m2)
-                // e.target.setMatrix(m2)
             }
             this.graph.paint()
         }

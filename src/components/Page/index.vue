@@ -4,13 +4,9 @@
   </div>
 </template>
 
-
 <script>
 import G6 from "@antv/g6";
-import { initBehavors } from "../../behavior";
-
-/* TODO: 流程图的展示模式是否直接使用dagre来进行自动布局？
-*/
+import {initBehavors} from "@/behavior";
 
 export default {
   data() {
@@ -30,7 +26,8 @@ export default {
     },
     data: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
     }
   },
   created() {
@@ -43,15 +40,15 @@ export default {
   },
   methods: {
     init() {
-      const height =  this.height - 42 
-      const width =  this.width - 400
+      const height = this.height - 42
+      const width = this.width - 400
 
       this.graph = new G6.Graph({
         container: "graph-container",
         height: height,
         width: width,
         groupType: 'rect',
-          groupStyle: {
+        groupStyle: {
           default: {},
           hover: {},
           collapse: {},
@@ -71,12 +68,10 @@ export default {
           ],
           mulitSelect: ["mulit-select"],
           addEdge: ["add-edge"],
-          // moveNode:[ "drag-item"]
         }
       });
-      const { editor, command } = this.$parent;
-      editor.emit("afterAddPage", { graph: this.graph, command });
-
+      const {editor, command} = this.$parent;
+      editor.emit("afterAddPage", {graph: this.graph, command});
       this.readData();
     },
     readData() {
@@ -90,8 +85,8 @@ export default {
 </script>
 
 <style scoped>
-.page{
-  margin-left:200px;
+.page {
+  margin-left: 200px;
   margin-right: 200px;
 }
 </style>
