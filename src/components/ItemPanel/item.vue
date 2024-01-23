@@ -140,7 +140,7 @@ export default {
         },
         {
           label: "表格",
-          size: "380*250",
+          size: "500*260",
           type: "node",
           x: 0,
           y: 0,
@@ -185,6 +185,30 @@ export default {
             },
             {
               "key": "nation",
+              "type": "varchar(255)"
+            },
+            {
+              "key": "key1",
+              "type": "varchar(255)"
+            },
+            {
+              "key": "gender1",
+              "type": "enum(M, F)"
+            },
+            {
+              "key": "birthday1",
+              "type": "date"
+            },
+            {
+              "key": "hometown1",
+              "type": "varchar(255)"
+            },
+            {
+              "key": "country1",
+              "type": "varchar(255)"
+            },
+            {
+              "key": "nation1",
               "type": "varchar(255)"
             }
           ]
