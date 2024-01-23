@@ -23,7 +23,7 @@ const tableNode = () => {
     /**
      * 表格每行高度
      */
-    const itemHeight = 25;
+    const itemHeight = 30;
 
     /**
      * 自定义Table表格节点
@@ -129,7 +129,7 @@ const tableNode = () => {
                 color,
                 id
             } = cfg;
-            const itemCount = 9;
+            const itemCount = 8;
             const [width, height] = size.map(Number);
 
             const afterList = tableData.slice(
@@ -173,6 +173,32 @@ const tableNode = () => {
                 draggable: true
             });
 
+            // 表格表头Header
+            const headers = ["时间", "数据"];
+            cfg.viewComparison.forEach(vc => {
+                if ("hoh" === vc) {
+                    headers.push("时段环比")
+                } else if ("dod" === vc) {
+                    headers.push("日环比")
+                } else {
+                    headers.push("周环比")
+                }
+            })
+            const columnWidth = width / headers.length;
+            headers.forEach((header, index) => {
+                group.addShape("text", {
+                    attrs: {
+                        x: columnWidth * index + 30,
+                        y: 60,
+                        text: header,
+                        fill: "#565758",
+                        fontSize: 13,
+                        fontWeight: 400,
+                        parent: id
+                    }
+                });
+            });
+
             // 表格整体外边框
             const keyShape = group.addShape("rect", {
                 attrs: {
@@ -214,37 +240,27 @@ const tableNode = () => {
             if (afterList) {
                 afterList.forEach((e, i) => {
                     const isSelected = Math.floor(startIndex) + i === Number(selectedIndex);
-                    let rowText;
-                    rowText = e.timePeriod + "--" + e.value + "--" + e.dodRate
-
-                    listContainer.addShape("rect", {
-                        attrs: {
-                            x: 1,
-                            y: i * itemHeight - itemHeight / 2 + offsetY,
-                            width: width - 4,
-                            cursor: "pointer",
-                            fill: "#fff",
-                        },
-                        name: `item-${Math.floor(startIndex) + i}-content`,
-                        draggable: true,
-                    });
-
-                    // 表格内容展示
-                    listContainer.addShape("text", {
-                        attrs: {
-                            x: 12,
-                            y: i * itemHeight + offsetY + 50,
-                            text: rowText,
-                            fontSize: 12,
-                            fill: isSelected ? "#1890ff" : "#000",
-                            full: e,
-                            fontWeight: isSelected ? 500 : 200,
-                            cursor: "pointer",
-                        },
-                        name: `item-${Math.floor(startIndex) + i}`,
+                    // 对每一列内容进行位置调整以对齐表头
+                    const rowContents = [e.timePeriod, e.value, e.dodRate, e.wowRate];
+                    rowContents.forEach((content, contentIndex) => {
+                        // 根据表头计算位置
+                        let xPosition = columnWidth * contentIndex + 30;
+                        listContainer.addShape("text", {
+                            attrs: {
+                                x: xPosition,
+                                y: i * itemHeight + offsetY + 50,
+                                text: content,
+                                fontSize: 13,
+                                fill: isSelected ? "#1890ff" : "#000",
+                                fontWeight: isSelected ? 500 : 300,
+                                cursor: "pointer",
+                            },
+                            name: `item-${Math.floor(startIndex) + i}`,
+                        });
                     });
                 });
             }
+
             this.drawInPoints(cfg, group);
             this.drawOutPoints(cfg, group);
             return keyShape;
