@@ -1295,6 +1295,30 @@ export default {
             wowRate: "-0.04%"
           }]
         },
+        {
+          label: "文本卡",
+          size: "290*90",
+          type: "node",
+          x: 0,
+          y: 0,
+          shape: "trendNode",
+          color: "#1890ff",
+          image: "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
+          inPoints: [[0, 0.5]],
+          outPoints: [[1, 0.5]],
+          isDoingStart: true,
+          id: 58,
+          name: "国内酒店抵扣有效订-趋势图",
+          enName: "hotel_mile_sorders_rate",
+          groupType: 3,
+          period: '1h',
+          card: {value: "109.00", dodRate: "-209.68%", wowRate: "430.42%", hohRate: "230.03%", time: "14:30 - 14:35"},
+          viewComparison: ["dod", "wow"],
+          table: {},
+          trend: {},
+          barData: [10, 20, 30, 15, 25], // 示例柱状图数据
+          lineData: [30, 15, 25, 35, 20], // 示例折线图数据
+        },
       ]
     };
   },
