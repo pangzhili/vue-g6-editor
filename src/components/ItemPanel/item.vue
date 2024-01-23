@@ -140,7 +140,7 @@ export default {
         },
         {
           label: "表格",
-          size: "500*280",
+          size: "485*280",
           type: "node",
           x: 0,
           y: 0,
