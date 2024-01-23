@@ -124,16 +124,15 @@ const tableNode = () => {
             const {
                 startIndex = 0,
                 selectedIndex,
-                attrs,
+                tableData,
                 size,
                 color,
                 id
             } = cfg;
-            const itemCount = 10;
+            const itemCount = 9;
             const [width, height] = size.map(Number);
 
-            const list = attrs;
-            const afterList = list.slice(
+            const afterList = tableData.slice(
                 Math.floor(startIndex),
                 Math.floor(startIndex + itemCount - 1)
             );
@@ -161,6 +160,17 @@ const tableNode = () => {
                     fontSize: 14,
                     parent: id
                 }
+            });
+            // 表格表头
+            group.addShape("rect", {
+                attrs: {
+                    x: 0,
+                    y: 35,
+                    height: 30,
+                    width,
+                    parent: id
+                },
+                draggable: true
             });
 
             // 表格整体外边框
@@ -195,65 +205,17 @@ const tableNode = () => {
                 type: "rect",
                 attrs: {
                     x: -8,
-                    y: 35,
+                    y: 70,
                     width: width,
                     height: height,
                 },
             });
-            // listContainer.addShape({
-            //     type: "rect",
-            //     attrs: {
-            //         x: 1,
-            //         y: 30,
-            //         width: width - 2,
-            //         height: 80 - 30,
-            //         fill: "#fff",
-            //     },
-            //     draggable: true,
-            // });
-
-            // if (list.length > itemCount) {
-            //     const barStyle = {
-            //         width: 4,
-            //         padding: 0,
-            //         boxStyle: {
-            //             stroke: "#00000022",
-            //         },
-            //         innerStyle: {
-            //             fill: "#00000022",
-            //         },
-            //     };
-            //     // listContainer.addShape("rect", {
-            //     //     attrs: {
-            //     //         y: 30,
-            //     //         x: width - barStyle.padding - barStyle.width,
-            //     //         width: barStyle.width,
-            //     //         height: height - 30,
-            //     //         ...barStyle.boxStyle,
-            //     //     },
-            //     // });
-            //
-            //     const indexHeight = afterList.length > itemCount ? (afterList.length / list.length) * height : 10;
-            //     listContainer.addShape("rect", {
-            //         attrs: {
-            //             y: 30 + barStyle.padding +
-            //                 (startIndex / list.length) * (height - 30),
-            //             x: width - barStyle.padding - barStyle.width,
-            //             width: barStyle.width,
-            //             height: Math.min(height, indexHeight),
-            //             ...barStyle.innerStyle,
-            //         },
-            //     });
-            // }
 
             if (afterList) {
                 afterList.forEach((e, i) => {
                     const isSelected = Math.floor(startIndex) + i === Number(selectedIndex);
-                    let {key = "", type} = e;
-                    if (type) {
-                        key += " - " + type;
-                    }
-                    const label = key.length > 26 ? key.slice(0, 24) + "..." : key;
+                    let rowText;
+                    rowText = e.timePeriod + "--" + e.value + "--" + e.dodRate
 
                     listContainer.addShape("rect", {
                         attrs: {
@@ -271,8 +233,8 @@ const tableNode = () => {
                     listContainer.addShape("text", {
                         attrs: {
                             x: 12,
-                            y: i * itemHeight + offsetY + 8,
-                            text: label,
+                            y: i * itemHeight + offsetY + 50,
+                            text: rowText,
                             fontSize: 12,
                             fill: isSelected ? "#1890ff" : "#000",
                             full: e,
@@ -366,7 +328,7 @@ const tableNode = () => {
                 const edgesToUpdate = new Set();
                 nodes.forEach((node) => {
                     const model = node._cfg.model;
-                    if (model.attrs.length < 2) {
+                    if (model.tableData.length < 2) {
                         return;
                     }
                     const idx = model.startIndex || 0;
@@ -379,8 +341,8 @@ const tableNode = () => {
                     if (startX > 0) {
                         startX = 0;
                     }
-                    if (startIndex > model.attrs.length - 1) {
-                        startIndex = model.attrs.length - 1;
+                    if (startIndex > model.tableData.length - 1) {
+                        startIndex = model.tableData.length - 1;
                     }
                     graph.updateItem(node, {
                         startIndex,
