@@ -138,6 +138,17 @@ const tableNode = () => {
             );
             const offsetY = (0.5 - (startIndex % 1)) * itemHeight + 30;
 
+            // 表格矩形
+            group.addShape("rect", {
+                attrs: {
+                    height: height,
+                    width,
+                    parent: id,
+                    stroke: "#ced4d9",
+                    radius: 4
+                },
+                draggable: true
+            });
             // 表格标题矩形
             group.addShape("rect", {
                 attrs: {
@@ -169,7 +180,6 @@ const tableNode = () => {
                     height: 30,
                     width,
                     parent: id,
-                    fill: "#fff",
                 },
                 draggable: true
             });
