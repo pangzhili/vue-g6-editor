@@ -1,11 +1,102 @@
 import G6 from '@antv/g6';
 import Chart from '@antv/chart-node-g6';
+import {uniqueId} from "@/utils";
 
 const trendNode = () => {
 
     G6.registerNode("trendNode", {
+        // 输入端点控制
+        drawInPoints(cfg, group) {
+            let size = cfg.size;
+            const width = parseInt(size[0]);
+            const height = parseInt(size[1]);
+            const offsetX = 0;
+            const offsetY = 0;
+            if (cfg.inPoints) {
+                for (let i = 0; i < cfg.inPoints.length; i++) {
+                    let x, y = 0;
+                    if (cfg.inPoints[i][0] === 0) {
+                        y = 0;
+                    } else {
+                        y = height;
+                    }
+                    x = width * cfg.inPoints[i][1];
+                    const id = "circle" + uniqueId();
+                    group.addShape("circle", {
+                        attrs: {
+                            id: "circle" + uniqueId(),
+                            parent: id,
+                            x: x + offsetX,
+                            y: y + offsetY,
+                            r: 10,
+                            isInPointOut: true,
+                            fill: "#1890ff",
+                            opacity: 0,
+                        },
+                    });
+                    group.addShape("circle", {
+                        attrs: {
+                            id: id,
+                            x: x + offsetX,
+                            y: y + offsetY,
+                            r: 3,
+                            isInPoint: true,
+                            fill: "#fff",
+                            stroke: "#1890ff",
+                            opacity: 0,
+                        },
+                    });
+                }
+            }
+        },
+
+        // 输出端点控制
+        drawOutPoints(cfg, group) {
+            let size = cfg.size;
+            const width = parseInt(size[0]);
+            const height = parseInt(size[1]);
+            const offsetX = 0;
+            const offsetY = 0;
+            if (cfg.outPoints) {
+                for (let i = 0; i < cfg.outPoints.length; i++) {
+                    let x, y = 0;
+                    if (cfg.outPoints[i][0] === 0) {
+                        y = 0;
+                    } else {
+                        y = height;
+                    }
+                    x = width * cfg.outPoints[i][1];
+                    const id = "circle" + uniqueId();
+                    group.addShape("circle", {
+                        attrs: {
+                            id: "circle" + uniqueId(),
+                            parent: id,
+                            x: x + offsetX,
+                            y: y + offsetY,
+                            r: 10,
+                            isOutPointOut: true,
+                            fill: "#1890ff",
+                            opacity: 0,
+                        },
+                    });
+                    group.addShape("circle", {
+                        attrs: {
+                            id: id,
+                            x: x + offsetX,
+                            y: y + offsetY,
+                            r: 3,
+                            isOutPoint: true,
+                            fill: "#fff",
+                            stroke: "#1890ff",
+                            opacity: 0,
+                        },
+                    });
+                }
+            }
+        },
+
         draw(cfg, group) {
-            const {size, color, id} = cfg;
+            const {size, color, id, trend} = cfg;
             const [width, height] = size.map(Number);
 
             // 趋势图最外层矩形
@@ -21,84 +112,163 @@ const trendNode = () => {
                     radius: 4,
                 },
             });
+            // 趋势图标题矩形
+            group.addShape("rect", {
+                attrs: {
+                    height: 35,
+                    width,
+                    parent: id,
+                    stroke: "#ced4d9",
+                    radius: [4, 4, 0, 0]
+                },
+                draggable: true
+            });
+            // 趋势图标题文字
+            group.addShape("text", {
+                attrs: {
+                    y: 26,
+                    x: 12,
+                    text: cfg.name,
+                    fill: "#565758",
+                    fontWeight: "bold",
+                    fontSize: 14,
+                    parent: id
+                }
+            });
+            // 趋势图最外层矩形添加颜色块
+            group.addShape("rect", {
+                attrs: {
+                    x: 0,
+                    y: 0,
+                    width: 2,
+                    height: height,
+                    fill: color,
+                    parent: id,
+                    radius: [4, 0, 0, 4],
+                },
+            });
 
-            const data = [
-                {month: 'Jan', city: 'Tokyo', temperature: 7},
-                {month: 'Jan', city: 'London', temperature: 3.9},
-                {month: 'Feb', city: 'Tokyo', temperature: 6.9},
-                {month: 'Feb', city: 'London', temperature: 4.2},
-                {month: 'Mar', city: 'Tokyo', temperature: 9.5},
-                {month: 'Mar', city: 'London', temperature: 5.7},
-                {month: 'Apr', city: 'Tokyo', temperature: 14.5},
-                {month: 'Apr', city: 'London', temperature: 8.5},
-                {month: 'May', city: 'Tokyo', temperature: 18.4},
-                {month: 'May', city: 'London', temperature: 11.9},
-                {month: 'Jun', city: 'Tokyo', temperature: 21.5},
-                {month: 'Jun', city: 'London', temperature: 15.2},
-                {month: 'Jul', city: 'Tokyo', temperature: 25.2},
-                {month: 'Jul', city: 'London', temperature: 17},
-                {month: 'Aug', city: 'Tokyo', temperature: 26.5},
-                {month: 'Aug', city: 'London', temperature: 16.6},
-                {month: 'Sep', city: 'Tokyo', temperature: 23.3},
-                {month: 'Sep', city: 'London', temperature: 14.2},
-                {month: 'Oct', city: 'Tokyo', temperature: 18.3},
-                {month: 'Oct', city: 'London', temperature: 10.3},
-                {month: 'Nov', city: 'Tokyo', temperature: 13.9},
-                {month: 'Nov', city: 'London', temperature: 6.6},
-                {month: 'Dec', city: 'Tokyo', temperature: 9.6},
-                {month: 'Dec', city: 'London', temperature: 4.8},
-            ];
+            this.drawInPoints(cfg, group);
+            this.drawOutPoints(cfg, group);
 
+            // 处理数据，转换为 G2 能理解的格式
+            const data = trend.aliasData.flatMap((time, index) => {
+                const record = [];
+                if (trend.todayData != null && trend.todayData[index] !== null) {
+                    record.push({time, type: trend.legendData[2], value: parseFloat(trend.todayData[index])});
+                }
+                if (trend.periodData != null && trend.periodData[index] !== null) {
+                    record.push({time, type: trend.legendData[1], value: parseFloat(trend.periodData[index])});
+                }
+                if (trend.yesterdayData != null && trend.yesterdayData[index] !== null) {
+                    record.push({time, type: trend.legendData[0], value: parseFloat(trend.yesterdayData[index])});
+                }
+                if (trend.weekData != null && trend.weekData[index] !== null) {
+                    record.push({time, type: trend.legendData[0], value: parseFloat(trend.weekData[index])});
+                }
+                return record;
+            });
+
+            // 创建 G2 图表实例
             const chart = new Chart({
                 group,
-                padding: 5,
-                width: 360,
-                height: 70,
-                x: 20,
-                y: 100,
+                padding: [30, 5, 10, 20],
+                width: width - 50,
+                height: height - 70,
+                x: 35,
+                y: 45,
                 autoFit: true,
             });
 
+            // 加载数据
             chart.data(data);
+
+            // 配置图表比例尺
             chart.scale({
-                month: {
+                time: {
                     range: [0, 1],
+                    tickCount: 10
                 },
-                temperature: {
+                value: {
                     nice: true,
+                    tickCount: 10
+                }
+            });
+
+            // 配置图例
+            chart.legend({
+                position: 'top',
+                marker: {
+                    symbol: 'hyphen'
                 },
+                offsetY: -3
             });
 
-            chart.tooltip({
-                showCrosshairs: true,
-                shared: true,
-            });
-
-            chart.axis('temperature', {
+            // 配置坐标轴
+            chart.axis('value', {
                 label: {
-                    formatter: (val) => {
-                        return val + ' °C';
-                    },
-                },
+                    formatter: (val) => `${val} %`
+                }
+            });
+            chart.axis('time', {
+                label: {
+                    autoRotate: false, // 避免标签旋转
+                }
             });
 
-            chart
-                .line()
-                .position('month*temperature')
-                .color('city')
-                .shape('smooth');
+            // 绘制三条趋势线
+            chart.line().position('time*value').color('type', ['#fdae6b', '#e6550d', '#31a354']).shape('smooth');
+            chart.point().position('time*value').color('type', ['#fdae6b', '#e6550d', '#31a354']).shape('circle');
 
-            chart
-                .point()
-                .position('month*temperature')
-                .color('city')
-                .shape('circle');
-
+            // 渲染图表
             chart.render();
+
 
             return keyShape;
         },
+
         update: null,
+
+        // 设置状态
+        setState(name, value, item) {
+            const group = item.getContainer();
+            const shape = group.get("children")[0];
+
+            const children = group.findAll((g) => {
+                return g.attrs.parent === shape.attrs.id;
+            });
+            const circles = group.findAll((circle) => {
+                return circle.attrs.isInPoint || circle.attrs.isOutPoint;
+            });
+            const selectStyles = () => {
+                shape.attr("fill", "#f3f9ff");
+                shape.attr("stroke", "#6ab7ff");
+                shape.attr("cursor", "move");
+                children.forEach((child) => {
+                    child.attr("cursor", "move");
+                });
+                circles.forEach((circle) => {
+                    circle.attr("opacity", 1);
+                });
+            };
+            const unSelectStyles = () => {
+                shape.attr("fill", "#fff");
+                shape.attr("stroke", "#ced4d9");
+                circles.forEach((circle) => {
+                    circle.attr("opacity", 0);
+                });
+            };
+            switch (name) {
+                case "selected":
+                case "hover":
+                    if (value) {
+                        selectStyles();
+                    } else {
+                        unSelectStyles();
+                    }
+                    break;
+            }
+        },
     });
 };
 
