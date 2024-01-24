@@ -1297,7 +1297,7 @@ export default {
         },
         {
           label: "文本卡",
-          size: "290*90",
+          size: "590*290",
           type: "node",
           x: 0,
           y: 0,
@@ -1318,6 +1318,28 @@ export default {
           trend: {},
           barData: [10, 20, 30, 15, 25], // 示例柱状图数据
           lineData: [30, 15, 25, 35, 20], // 示例折线图数据
+
+          series: [
+            { year: '1991', value: 15468 },
+            { year: '1992', value: 16100 },
+            { year: '1993', value: 15900 },
+            { year: '1994', value: 17409 },
+            { year: '1995', value: 17000 },
+            { year: '1996', value: 31056 },
+            { year: '1997', value: 31982 },
+            { year: '1998', value: 32040 },
+            { year: '1999', value: 33233 },
+            { year: '2000', value: 34221 },
+            { year: '2001', value: 34527 },
+            { year: '2002', value: 33941 },
+            { year: '2003', value: 32832 },
+            { year: '2004', value: 32663 },
+            { year: '2005', value: 34268 },
+            { year: '2006', value: 42444 },
+            { year: '2007', value: 43707 },
+            { year: '2008', value: 43578 },
+            // ... 根据需要继续添加更多年份和数值
+          ]
         },
       ]
     };

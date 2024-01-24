@@ -1,70 +1,99 @@
 import G6 from '@antv/g6';
+import Chart from '@antv/chart-node-g6';
 
 const trendNode = () => {
 
-    /**
-     * 自定义Table表格节点
-     */
+    // 创建 G2Plot 折线图节点
     G6.registerNode("trendNode", {
         draw(cfg, group) {
-            const { barData = [], lineData = [], width = 200, height = 100 } = cfg;
-
-            // 绘制节点背景
             const keyShape = group.addShape('rect', {
                 attrs: {
                     x: 0,
                     y: 0,
-                    width,
-                    height,
+                    width: 400,
+                    height: 200,
                     fill: '#fff',
-                    stroke: '#666',
                 },
             });
 
-            // 计算柱状图和折线图的最大值和最小值
-            const maxBarValue = Math.max(...barData);
-            const maxLineValue = Math.max(...lineData);
-            const maxValue = Math.max(maxBarValue, maxLineValue);
-            const minBarValue = Math.min(...barData);
-            const minLineValue = Math.min(...lineData);
-            const minValue = Math.min(minBarValue, minLineValue);
+            const data = [
+                {month: 'Jan', city: 'Tokyo', temperature: 7},
+                {month: 'Jan', city: 'London', temperature: 3.9},
+                {month: 'Feb', city: 'Tokyo', temperature: 6.9},
+                {month: 'Feb', city: 'London', temperature: 4.2},
+                {month: 'Mar', city: 'Tokyo', temperature: 9.5},
+                {month: 'Mar', city: 'London', temperature: 5.7},
+                {month: 'Apr', city: 'Tokyo', temperature: 14.5},
+                {month: 'Apr', city: 'London', temperature: 8.5},
+                {month: 'May', city: 'Tokyo', temperature: 18.4},
+                {month: 'May', city: 'London', temperature: 11.9},
+                {month: 'Jun', city: 'Tokyo', temperature: 21.5},
+                {month: 'Jun', city: 'London', temperature: 15.2},
+                {month: 'Jul', city: 'Tokyo', temperature: 25.2},
+                {month: 'Jul', city: 'London', temperature: 17},
+                {month: 'Aug', city: 'Tokyo', temperature: 26.5},
+                {month: 'Aug', city: 'London', temperature: 16.6},
+                {month: 'Sep', city: 'Tokyo', temperature: 23.3},
+                {month: 'Sep', city: 'London', temperature: 14.2},
+                {month: 'Oct', city: 'Tokyo', temperature: 18.3},
+                {month: 'Oct', city: 'London', temperature: 10.3},
+                {month: 'Nov', city: 'Tokyo', temperature: 13.9},
+                {month: 'Nov', city: 'London', temperature: 6.6},
+                {month: 'Dec', city: 'Tokyo', temperature: 9.6},
+                {month: 'Dec', city: 'London', temperature: 4.8},
+            ];
 
-            // 绘制柱状图
-            const barWidth = width / (2 * barData.length); // 柱子的宽度
-            barData.forEach((value, index) => {
-                const barHeight = ((value - minValue) / (maxValue - minValue)) * height;
-                group.addShape('rect', {
-                    attrs: {
-                        x: 2 * barWidth * index,
-                        y: height - barHeight,
-                        width: barWidth,
-                        height: barHeight,
-                        fill: '#1890ff',
-                    },
-                });
+            const chart = new Chart({
+                group,
+                padding: 5,
+                width: 360,
+                height: 70,
+                x: 20,
+                y: 100,
+                autoFit: true,
             });
 
-            // 绘制折线图
-            if (lineData.length > 1) {
-                const points = lineData.map((value, index) => {
-                    const x = (width / (lineData.length - 1)) * index;
-                    const y = ((maxValue - value) / (maxValue - minValue)) * height;
-                    return [x, y];
-                });
+            chart.data(data);
+            chart.scale({
+                month: {
+                    range: [0, 1],
+                },
+                temperature: {
+                    nice: true,
+                },
+            });
 
-                group.addShape('polyline', {
-                    attrs: {
-                        points,
-                        stroke: '#ff4d4f',
-                        lineWidth: 2,
+            chart.tooltip({
+                showCrosshairs: true,
+                shared: true,
+            });
+
+            chart.axis('temperature', {
+                label: {
+                    formatter: (val) => {
+                        return val + ' °C';
                     },
-                });
-            }
+                },
+            });
+
+            chart
+                .line()
+                .position('month*temperature')
+                .color('city')
+                .shape('smooth');
+
+            chart
+                .point()
+                .position('month*temperature')
+                .color('city')
+                .shape('circle');
+
+            chart.render();
 
             return keyShape;
         },
+        update: null,
     });
-
 };
 
 export default trendNode;
