@@ -1330,7 +1330,7 @@ export default {
           type: "node",
           x: 0,
           y: 0,
-          shape: "trendNode",
+          shape: "trendBarNode",
           color: "#1890ff",
           image: "https://gw.alipayobjects.com/zos/rmsportal/czNEJAmyDpclFaSucYWB.svg",
           inPoints: [[0, 0.5]],
