@@ -212,7 +212,7 @@ const trendBarNode = () => {
             });
 
             chart.annotation().text({
-                position: ['72%', '-9%'],  // 同样设置为顶部中央
+                position: ['74%', '-9%'],  // 同样设置为顶部中央
                 content: '环比',           // 这里填写您想要显示的文本
                 style: {
                     fontSize: 11,         // 字体大小
@@ -230,13 +230,16 @@ const trendBarNode = () => {
                 .color('#5B8FF9')
                 .tooltip('date*today')
                 .style({radius: [2, 2, 0, 0]})
+                .label("今日")
             ; // 设置柱状图顶部圆角
 
             chart.line()
                 .position('date*yesterday')
                 .color('#fdae6b')
                 .shape('smooth')
-                .tooltip('date*yesterday');
+                .tooltip('date*yesterday')
+                .label("今日")
+            ;
 
             chart.line()
                 .position('date*week')
