@@ -111,6 +111,7 @@ const trendNode = () => {
                     fill: "#fff",
                     radius: 4,
                 },
+                draggable: true
             });
             // 趋势图标题矩形
             group.addShape("rect", {
