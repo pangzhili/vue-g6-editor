@@ -155,7 +155,7 @@ const trendBarNode = () => {
             // 创建 G2 图表实例
             const chart = new Chart({
                 group,
-                padding: [50, 10, 10, 15],
+                padding: [40, 10, 10, 15],
                 width: width - 70,
                 height: height - 70,
                 x: 35,
@@ -201,7 +201,7 @@ const trendBarNode = () => {
 
             // 在图表顶部添加文本标注
             chart.annotation().text({
-                position: ['25%', '-9%'],  // 位置设置为顶部中央，'5%' 用于稍微向下偏移
+                position: ['25%', '-12%'],  // 位置设置为顶部中央，'5%' 用于稍微向下偏移
                 content: '数值',      // 这里填写您想要显示的文本
                 style: {
                     fontSize: 11,         // 字体大小
@@ -212,7 +212,7 @@ const trendBarNode = () => {
             });
 
             chart.annotation().text({
-                position: ['74%', '-9%'],  // 同样设置为顶部中央
+                position: ['74%', '-12%'],  // 同样设置为顶部中央
                 content: '环比',           // 这里填写您想要显示的文本
                 style: {
                     fontSize: 11,         // 字体大小
