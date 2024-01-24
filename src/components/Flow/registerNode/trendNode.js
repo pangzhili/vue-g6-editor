@@ -3,16 +3,22 @@ import Chart from '@antv/chart-node-g6';
 
 const trendNode = () => {
 
-    // 创建 G2Plot 折线图节点
     G6.registerNode("trendNode", {
         draw(cfg, group) {
+            const {size, color, id} = cfg;
+            const [width, height] = size.map(Number);
+
+            // 趋势图最外层矩形
             const keyShape = group.addShape('rect', {
                 attrs: {
+                    id,
                     x: 0,
                     y: 0,
-                    width: 400,
-                    height: 200,
-                    fill: '#fff',
+                    width: width,
+                    height: height,
+                    stroke: "#ced4d9",
+                    fill: "#fff",
+                    radius: 4,
                 },
             });
 

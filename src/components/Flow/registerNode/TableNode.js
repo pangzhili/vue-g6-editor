@@ -168,7 +168,8 @@ const tableNode = () => {
                     y: 35,
                     height: 30,
                     width,
-                    parent: id
+                    parent: id,
+                    fill: "#fff",
                 },
                 draggable: true
             });
