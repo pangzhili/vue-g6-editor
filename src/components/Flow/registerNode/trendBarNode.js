@@ -155,7 +155,7 @@ const trendBarNode = () => {
             // 创建 G2 图表实例
             const chart = new Chart({
                 group,
-                padding: [40, 10, 10, 15],
+                padding: [40, 20, 10, 15],
                 width: width - 70,
                 height: height - 70,
                 x: 35,
@@ -198,6 +198,13 @@ const trendBarNode = () => {
                 position: 'right',
             });
             chart.axis('yesterday', false)
+
+            // 配置坐标轴
+            chart.axis('week', {
+                label: {
+                    formatter: (val) => `${val} %`
+                }
+            });
 
             // 在图表顶部添加文本标注
             chart.annotation().text({
