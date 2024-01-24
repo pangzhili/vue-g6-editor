@@ -151,20 +151,40 @@ const trendNode = () => {
             this.drawInPoints(cfg, group);
             this.drawOutPoints(cfg, group);
 
+            const legendMapping = {
+                today: "今日",
+                period: "上时段",
+                yesterday: "昨日",
+                week: "上周"
+            };
+
+
             // 处理数据，转换为 G2 能理解的格式
             const data = trend.aliasData.flatMap((time, index) => {
                 const record = [];
+
                 if (trend.todayData != null && trend.todayData[index] !== null) {
-                    record.push({time, type: trend.legendData[2], value: parseFloat(trend.todayData[index])});
+                    const legendText = legendMapping.today;
+                    const legendType = trend.legendData.find(type => type === legendText);
+                    record.push({time, type: legendType, value: parseFloat(trend.todayData[index])});
                 }
+
                 if (trend.periodData != null && trend.periodData[index] !== null) {
-                    record.push({time, type: trend.legendData[1], value: parseFloat(trend.periodData[index])});
+                    const legendText = legendMapping.period;
+                    const legendType = trend.legendData.find(type => type === legendText);
+                    record.push({time, type: legendType, value: parseFloat(trend.periodData[index])});
                 }
+
                 if (trend.yesterdayData != null && trend.yesterdayData[index] !== null) {
-                    record.push({time, type: trend.legendData[0], value: parseFloat(trend.yesterdayData[index])});
+                    const legendText = legendMapping.yesterday;
+                    const legendType = trend.legendData.find(type => type === legendText);
+                    record.push({time, type: legendType, value: parseFloat(trend.yesterdayData[index])});
                 }
+
                 if (trend.weekData != null && trend.weekData[index] !== null) {
-                    record.push({time, type: trend.legendData[0], value: parseFloat(trend.weekData[index])});
+                    const legendText = legendMapping.weekData;
+                    const legendType = trend.weekData.find(type => type === legendText);
+                    record.push({time, type: legendType, value: parseFloat(trend.weekData[index])});
                 }
                 return record;
             });
