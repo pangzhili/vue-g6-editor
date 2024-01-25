@@ -1,5 +1,7 @@
 <template>
-  <div class="detailpannel">
+  <div class="detailpannel" :style="{width:width + 'px'}">
+    <!-- 拖动把手 -->
+    <div class="resize-handle" @mousedown="initResize"></div>
     <div>
       <div v-if="status==='node-selected'" class="pannel" id="node_detailpannel">
         <div class="pannel-title">详情</div>
@@ -41,7 +43,8 @@ export default {
       graph: {},
       item: {},
       node: {},
-      grid: null
+      grid: null,
+      width: 200
     };
   },
   created() {
@@ -49,6 +52,23 @@ export default {
     this.bindEvent();
   },
   methods: {
+    initResize(event) {
+      window.addEventListener('mousemove', this.startResize);
+      window.addEventListener('mouseup', this.stopResize);
+      event.preventDefault();
+    },
+    startResize(event) {
+      const newWidth = document.documentElement.clientWidth - event.clientX;
+      if (newWidth > 200) { // 200px 是最小宽度
+        this.width = newWidth;
+      } else {
+        this.width = 200; // 如果计算的新宽度小于200px，则保持200px不变
+      }
+    },
+    stopResize(event) {
+      window.removeEventListener('mousemove', this.startResize);
+      window.removeEventListener('mouseup', this.stopResize);
+    },
     init() {
     },
     bindEvent() {
@@ -95,8 +115,17 @@ export default {
   right: 0px;
   z-index: 2;
   background: #f7f9fb;
-  width: 200px;
   border-left: 1px solid #e6e9ed;
+
+}
+
+.resize-handle {
+  width: 2px;
+  height: 100%;
+  cursor: ew-resize;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .detailpannel .block-container {
