@@ -337,9 +337,10 @@ export default {
   border: 1px solid rgba(2, 2, 2, 0);
 }
 
-.toolbar .command:hover {
+.toolbar .command:not(.disable):hover {
   cursor: pointer;
-  border: 1px solid #e9e9e9;
+  font-weight: 500;
+  color: #1890ff; /* 鼠标移入时的颜色 */
 }
 
 .toolbar .disable {
