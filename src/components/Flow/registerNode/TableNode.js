@@ -1,24 +1,7 @@
 import G6 from '@antv/g6';
-import {uniqueId} from "@/utils";
+import {isInBBox, uniqueId} from "@/utils";
 
 const tableNode = () => {
-
-    /**
-     * 判断当前是否处于Box中
-     */
-    const isInBBox = (point, bbox) => {
-        const {
-            x,
-            y
-        } = point;
-        const {
-            minX,
-            minY,
-            maxX,
-            maxY
-        } = bbox;
-        return x < maxX && x > minX && y > minY && y < maxY;
-    };
 
     /**
      * 表格每行高度

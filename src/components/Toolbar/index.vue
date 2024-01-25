@@ -74,7 +74,9 @@
         title="多选"
         @click="handleMuiltSelect"
     ></i>
-    <el-button @click="consoleData" type="primary">控制台输出数据</el-button>
+    <span class="separator"></span>
+    <span class="separator"></span>
+    <el-button @click="consoleData" type="primary" style="margin-left: 15px">控制台输出数据</el-button>
   </div>
 </template>
 
@@ -163,13 +165,11 @@ export default {
       }
     },
     getFormatPadding() {
-
       function formatPadding(padding) {
         let top = 0;
         let left = 0;
         let right = 0;
         let bottom = 0;
-
         if (Util.isNumber(padding) || Util.isString(padding)) {
           top = left = right = bottom = padding;
         } else if (Util.isArray(padding)) {
@@ -302,7 +302,6 @@ export default {
       // edgeGroup.toFront();
       // this.graph.paint();
     },
-
     consoleData() {
       // eslint-disable-next-line no-console
       console.log(this.graph.save());
