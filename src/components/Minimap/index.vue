@@ -1,5 +1,5 @@
 <template>
-  <div id="navigator">
+  <div id="navigator" :style="{width:width + 'px'}">
     <div class="pannel-title">导航器</div>
     <div id="minimap" class="minimap" ref="minimap"></div>
   </div>
@@ -15,7 +15,8 @@ export default {
   data() {
     return {
       minimap: null,
-      graph: null
+      graph: null,
+      width: 200
     };
   },
   created() {
@@ -25,8 +26,13 @@ export default {
     this.$nextTick(() => {
       this.initMinmap();
     });
+    eventBus.$on('panelResize', this.handlePanelResize);
   },
   methods: {
+    handlePanelResize(newWidth) {
+      // 更新 navigator 宽度
+      this.width = `${newWidth}`;
+    },
     initMinmap() {
       const cfgs = {
         container: "minimap"
@@ -51,7 +57,6 @@ export default {
 
 <style scoped>
 #navigator {
-  width: 200px;
   position: absolute;
   bottom: 0;
   right: 0;

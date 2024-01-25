@@ -64,6 +64,7 @@ export default {
       } else {
         this.width = 200; // 如果计算的新宽度小于200px，则保持200px不变
       }
+      eventBus.$emit('panelResize', this.width);
     },
     stopResize(event) {
       window.removeEventListener('mousemove', this.startResize);
