@@ -69,8 +69,6 @@
         title="层级前置"
         @click="handleToFront"
     ></i>
-    <span class="separator"></span>
-    <span class="separator"></span>
     <i
         data-command="multiSelect"
         class="command iconfont icon-select"
@@ -82,9 +80,16 @@
     <span class="separator"></span>
     <i
         data-command="clear"
-        class="command el-icon-circle-close"
+        class="command el-icon-brush"
         title="清空画布"
         @click="handleClear"
+        style="font-size: 15px"
+    ></i>
+    <i
+        data-command="fullScreen"
+        class="command el-icon-rank"
+        title="全屏"
+        @click="handleFullScreen"
         style="font-size: 15px"
     ></i>
 
@@ -109,7 +114,8 @@ export default {
       command: null,
       selectedItem: null,
       multiSelect: false,
-      addGroup: false
+      addGroup: false,
+      showFullScreen: true
     };
   },
   created() {
@@ -122,7 +128,9 @@ export default {
     }
   },
   methods: {
-    handleReturn() {
+    handleFullScreen() {
+      this.showFullScreen = !this.showFullScreen;
+      eventBus.$emit('fullScreen', this.showFullScreen);
     },
     init() {
       const {editor, command} = this.$parent;

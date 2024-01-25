@@ -9,9 +9,9 @@
         <!--itempannel-->
         <item-panel/>
         <!--detailpannel-->
-        <detail-panel/>
+        <detail-panel v-show="showFullScreen"/>
         <!--miniMap-->
-        <minimap/>
+        <minimap v-show="showFullScreen"/>
         <!--page-->
         <page :height="height" :width="width" :data="data"/>
       </div>
@@ -30,6 +30,7 @@ import Flow from "../Flow"
 import ContextMenu from "../ContextMenu";
 import Editor from "../Base/Editor";
 import command from "../../command";
+import eventBus from "@/utils/eventBus";
 
 export default {
   name: "G6Editor",
@@ -60,17 +61,24 @@ export default {
   created() {
     this.init();
   },
+  mounted() {
+    eventBus.$on('fullScreen', flag => {
+      this.showFullScreen = flag;
+    });
+  },
   data() {
     return {
       editor: {},
-      command: null
+      command: null,
+      showFullScreen: true
     };
   },
   methods: {
     init() {
       this.editor = new Editor();
       this.command = new command(this.editor);
-    }
+    },
+
   }
 };
 </script>
