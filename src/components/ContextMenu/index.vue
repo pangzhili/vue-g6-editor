@@ -134,7 +134,7 @@ export default {
       if (this.selectedItem && this.selectedItem.length > 0) {
         this.selectedItem.forEach(item => {
           const model = item.getModel(); // 获取节点的数据模型
-          model.size = [290,90]
+          model.size = [290, 90]
           model.shape = "textCardNode"; // 将矩形节点切换为圆形节点
           this.graph.updateItem(item, model); // 更新节点的数据模型
         });
