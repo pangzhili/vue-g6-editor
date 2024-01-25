@@ -70,7 +70,7 @@ export default {
       }
       eventBus.$emit('panelResize', this.width);
     },
-    stopResize(event) {
+    stopResize() {
       window.removeEventListener('mousemove', this.startResize);
       window.removeEventListener('mouseup', this.stopResize);
     },
@@ -97,13 +97,6 @@ export default {
           self.node = item;
         });
       });
-    },
-    handleChangeName(e) {
-      const model = {
-        label: e
-      };
-
-      this.graph.update(this.item, model);
     },
     changeGridState(value) {
       if (value) {
