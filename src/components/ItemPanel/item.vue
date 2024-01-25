@@ -290,7 +290,7 @@ export default {
           searchValue: null,
           status: 0,
           timeDimensionId: null,
-          timeDimensionName: null,
+          timeDimensionName: '创建时间',
           quotaType: 3,
           updateBy: "高升",
           updateTime: "2024-01-10 16:42:17",

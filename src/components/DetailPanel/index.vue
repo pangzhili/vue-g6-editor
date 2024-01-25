@@ -4,14 +4,24 @@
     <div class="resize-handle" @mousedown="initResize"></div>
     <div>
       <div v-if="status==='node-selected'" class="pannel" id="node_detailpannel">
+
         <div class="pannel-title">详情</div>
         <div class="block-container">
-          <el-row :gutter="10">
-            <el-col :span="20">中文名称：{{ node.name }}</el-col>
-            <el-col :span="20">英文名称：{{ node.enName }}</el-col>
-          </el-row>
+          <el-col :span="20">中文名称：{{ node.name }}</el-col>
+          <el-col :span="20">英文名称：{{ node.enName }}</el-col>
+          <el-col :span="20">时间维度：{{ node.timeDimensionName }}</el-col>
+          <el-col :span="20">统计时段：{{ node.period.replace("h", "小时").replace("d", "天").replace("m", "分钟") }}</el-col>
+          <el-col :span="20">指标类型：{{
+              node.quotaType === 1 ? "原子指标" : node.quotaType === 2 ? "派生指标" : "复合指标"
+            }}
+          </el-col>
+          <el-col :span="20">指标级别：{{ node.level }}</el-col>
+          <el-col :span="20">&nbsp;&nbsp;&nbsp;负责人：{{ node.owner }}</el-col>
+          <el-col :span="20">&nbsp;&nbsp;&nbsp;创建人：{{ node.createBy }}</el-col>
+          <el-col :span="20">创建时间：{{ node.createTime }}</el-col>
         </div>
       </div>
+
       <div v-if="status==='canvas-selected'" class="pannel" id="canvas_detailpannel">
         <div class="pannel-title">画布</div>
         <div class="block-container">
@@ -125,13 +135,9 @@ export default {
 
 .detailpannel .block-container {
   padding: 16px 8px;
-}
-
-.block-container .el-col {
-  height: 28px;
   display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+  flex-direction: column;
+  overflow: hidden; /* 确保容器也有溢出隐藏 */
 }
 
 .pannel-title {
@@ -143,4 +149,17 @@ export default {
   line-height: 28px;
   padding-left: 12px;
 }
+
+.block-container .el-col {
+  height: 33px;
+  min-width: 0; /* 允许元素缩小到内容的最小尺寸 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1; /* 允许元素根据需要收缩 */
+  color: gray;
+  font-size: 12px;
+  user-select: text;
+}
+
 </style>
