@@ -1,7 +1,5 @@
 <template>
   <div class="toolbar">
-    <!-- 添加返回按钮 -->
-    <!--    <i class="el-icon-arrow-left" title="返回" @click="handleReturn"></i>-->
     <span class="view-name">酒店核心产能数据情况</span>
     <link
         rel="stylesheet"
@@ -81,7 +79,8 @@
         @click="handleMuiltSelect"
     ></i>
 
-    <el-button @click="consoleData" type="primary" style="float: right;margin-right: 20px">保存</el-button>
+    <el-button @click="saveData" type="primary" style="float: right;margin-right: 24px">保存</el-button>
+    <el-button @click="closeView" type="info" style="float: right;margin-right:18px">关闭</el-button>
   </div>
 </template>
 
@@ -309,9 +308,15 @@ export default {
       // edgeGroup.toFront();
       // this.graph.paint();
     },
-    consoleData() {
+    // 保存数据
+    saveData() {
       // eslint-disable-next-line no-console
       console.log(this.graph.save());
+
+    },
+    // 关闭视图
+    closeView() {
+
     }
   }
 };
