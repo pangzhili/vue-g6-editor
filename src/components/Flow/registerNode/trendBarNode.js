@@ -161,7 +161,7 @@ const trendBarNode = () => {
 
             // 计算图例的位置和大小
             const legendX = width / 3; // 距离画布左侧的距离
-            const legendY = 45; // 距离画布顶部的距离
+            const legendY = 46; // 距离画布顶部的距离
             const itemGap = 30; // 图例项之间的间隔
             const itemWidth = 10; // 图例项的宽度
             const itemHeight = 10; // 图例项的高度
