@@ -1,21 +1,25 @@
 <template>
   <!-- 左侧列表栏数据列表 -->
-  <ul>
-    <li
-        v-for="(item,index) in list"
-        :key="index"
-        class="getItem"
-        :data-shape="item.shape"
-        :data-type="item.type"
-        :data-size="item.size"
-        draggable="true"
-        @dragstart="handleDragstart"
-        @dragend="handleDragEnd($event,item)"
-    >
-      <span class="pannel-type-icon" :style="{background:'url('+item.image+')'}"></span>
-      <span class="item-name">{{ item.name }}</span>
-    </li>
-  </ul>
+  <div>
+    <ul>
+      <li
+          v-for="(item,index) in list"
+          :key="index"
+          class="getItem"
+          :data-shape="item.shape"
+          :data-type="item.type"
+          :data-size="item.size"
+          draggable="true"
+          @dragstart="handleDragstart"
+          @dragend="handleDragEnd($event,item)"
+          :style="{width: width - 12 + 'px'}"
+      >
+        <span class="pannel-type-icon" :style="{background:'url('+item.image+')'}"></span>
+        <span class="item-name" :style="{ maxWidth : width + 'px' }">{{ item.name }}</span>
+      </li>
+    </ul>
+    <div class="resizer" @mousedown="initResize"></div>
+  </div>
 </template>
 
 <script>
@@ -30,6 +34,7 @@ export default {
       command: null,
       offsetX: 0,
       offsetY: 0,
+      width: 240,
       list: [
         {
           name: "测试节点",
@@ -279,7 +284,7 @@ export default {
           hasView: true,
           id: 58,
           level: "L1",
-          name: "国内酒店里程抵扣有效单占比",
+          name: "国内酒店里程抵扣有效单占比fasdfsafdasfdsf",
           owner: "高升(41137)",
           ownerId: "41137",
           ownerName: "高升",
@@ -303,6 +308,23 @@ export default {
     this.bindEvent();
   },
   methods: {
+    initResize(event) {
+      window.addEventListener('mousemove', this.startResize);
+      window.addEventListener('mouseup', this.stopResize);
+      event.preventDefault();
+    },
+    startResize(event) {
+      let newWidth = event.clientX;
+      if (newWidth < 240) {
+        newWidth = 240;
+      }
+      this.width = newWidth
+      eventBus.$emit('itemPanelResize', this.width);
+    },
+    stopResize(event) {
+      window.removeEventListener('mousemove', this.startResize);
+      window.removeEventListener('mouseup', this.stopResize);
+    },
     handleDragstart(e) {
       this.offsetX = e.offsetX;
       this.offsetY = e.offsetY;
@@ -335,17 +357,6 @@ export default {
 </script>
 
 <style scoped>
-.itempannel {
-  height: 100%;
-  position: absolute;
-  left: 0;
-  z-index: 2;
-  background: #f7f9fb;
-  width: 240px !important;
-  padding-top: 8px;
-  border-right: 1px solid #e6e9ed;
-}
-
 .itempannel ul {
   padding: 0px;
   padding-left: 4px !important;
@@ -356,7 +367,6 @@ export default {
   align-items: center; /* 使用 flex 布局实现垂直居中对齐 */
   color: rgba(0, 0, 0, 0.65);
   border-radius: 4px;
-  width: 227px;
   height: 30px; /* 增加 li 元素的高度 */
   padding-left: 4px;
   border: 1px solid rgba(0, 0, 0, 0);
@@ -382,7 +392,16 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
-  max-width: 210px; /* 修改为更合适的值 */
   vertical-align: middle; /* 垂直居中对齐 */
+}
+
+/* 添加新的调整大小手柄样式 */
+.resizer {
+  width: 3px;
+  height: 100%;
+  cursor: ew-resize;
+  position: absolute;
+  right: -5px; /* 使其部分重叠，增加可点击面积 */
+  top: 0;
 }
 </style>
