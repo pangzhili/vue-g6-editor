@@ -7,14 +7,8 @@
         <div class="pannel-title">详情</div>
         <div class="block-container">
           <el-row :gutter="10">
-            <el-col :span="8">名称</el-col>
-            <el-col :span="16">
-              <el-input v-model="node.label" @change="handleChangeName"/>
-            </el-col>
-            <el-col :span="8">任意属性</el-col>
-            <el-col :span="16">
-              <el-input v-model="node.xxx"/>
-            </el-col>
+            <el-col :span="20">中文名称：{{ node.name }}</el-col>
+            <el-col :span="20">英文名称：{{ node.enName }}</el-col>
           </el-row>
         </div>
       </div>

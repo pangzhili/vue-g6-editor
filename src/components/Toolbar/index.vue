@@ -88,7 +88,7 @@
     <i
         data-command="fullScreen"
         class="command el-icon-rank"
-        :title="this.showFullScreen === 1 ? '右侧全屏' : this.showFullScreen === 2 ? '全屏' : '取消全屏'"
+        :title="this.showFullScreen === 1 ? '右侧全屏' : this.showFullScreen === 2 ? '左侧全屏' : '取消全屏'"
         @click="handleFullScreen"
         :style="{ color: getFullScreenColor(showFullScreen),'font-size':15+'px' }"
     ></i>

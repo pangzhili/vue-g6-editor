@@ -41,7 +41,7 @@ export default {
   methods: {
     init() {
       const height = this.height - 42
-      const width = this.width - 20
+      const width = this.width
 
       this.graph = new G6.Graph({
         container: "graph-container",
@@ -88,7 +88,7 @@ export default {
 
 <style scoped>
 .page {
-  margin-left: 10px;
+  margin-left: 0;
   margin-right: 0;
 }
 </style>
