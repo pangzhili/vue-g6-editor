@@ -230,7 +230,6 @@ const trendBarNode = () => {
             });
 
 
-
             // 绘制图表元素
             chart.interval()
                 .position('date*today')
