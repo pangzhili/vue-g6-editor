@@ -88,7 +88,7 @@ export default {
 
 <style scoped>
 .page {
-  margin-left: 200px;
-  margin-right: 200px;
+  margin-left: 0;
+  margin-right: 0;
 }
 </style>
