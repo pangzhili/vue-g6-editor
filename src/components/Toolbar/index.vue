@@ -78,6 +78,15 @@
         title="多选"
         @click="handleMuiltSelect"
     ></i>
+    <span class="separator"></span>
+    <span class="separator"></span>
+    <i
+        data-command="clear"
+        class="command el-icon-circle-close"
+        title="清空画布"
+        @click="handleClear"
+        style="font-size: 15px"
+    ></i>
 
     <el-button @click="saveData" type="primary" style="float: right;margin-right: 24px">保存</el-button>
     <el-button @click="closeView" type="info" style="float: right;margin-right:18px">关闭</el-button>
@@ -308,6 +317,15 @@ export default {
       // edgeGroup.toFront();
       // this.graph.paint();
     },
+    // 清空画布
+    handleClear() {
+      this.graph.clear();
+      // 清除 undoList 和 redoList
+      this.undoList = [];
+      this.redoList = [];
+      // 重新绘制画布
+      this.graph.paint();
+    },
     // 保存数据
     saveData() {
       // eslint-disable-next-line no-console
@@ -347,7 +365,7 @@ export default {
 }
 
 .toolbar .command:nth-of-type(1) {
-  margin-left: 15%;
+  margin-left: 14%;
 }
 
 .toolbar .command {

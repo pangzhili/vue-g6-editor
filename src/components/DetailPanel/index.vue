@@ -1,8 +1,8 @@
 <template>
   <div class="detailpannel">
     <div>
-      <div v-if="status=='node-selected'" class="pannel" id="node_detailpannel">
-        <div class="pannel-title">模型详情</div>
+      <div v-if="status==='node-selected'" class="pannel" id="node_detailpannel">
+        <div class="pannel-title">详情</div>
         <div class="block-container">
           <el-row :gutter="10">
             <el-col :span="8">名称</el-col>
