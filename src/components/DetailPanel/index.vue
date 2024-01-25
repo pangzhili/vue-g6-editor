@@ -92,6 +92,10 @@ export default {
             self.node = null;
           }
         });
+        eventBus.$on("selectNode", item => {
+          self.status = "node-selected";
+          self.node = item;
+        });
       });
     },
     handleChangeName(e) {

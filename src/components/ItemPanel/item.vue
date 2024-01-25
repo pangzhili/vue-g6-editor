@@ -13,6 +13,7 @@
           @dragstart="handleDragstart"
           @dragend="handleDragEnd($event,item)"
           :style="{width: width - 12 + 'px'}"
+          @click="selectItemInfo(item)"
       >
         <span class="pannel-type-icon" :style="{background:'url('+item.image+')'}"></span>
         <span class="item-name" :style="{ maxWidth : width + 'px' }">{{ item.name }}</span>
@@ -308,6 +309,9 @@ export default {
     this.bindEvent();
   },
   methods: {
+    selectItemInfo(item) {
+      eventBus.$emit('selectNode', item);
+    },
     initResize(event) {
       window.addEventListener('mousemove', this.startResize);
       window.addEventListener('mouseup', this.stopResize);
