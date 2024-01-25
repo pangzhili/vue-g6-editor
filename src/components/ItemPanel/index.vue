@@ -14,7 +14,7 @@ export default {
     return {
       page: null,
       command: null,
-      width: 240
+      width: 250
     };
   },
   created() {

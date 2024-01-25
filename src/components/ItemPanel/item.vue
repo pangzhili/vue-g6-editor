@@ -34,7 +34,7 @@ export default {
       command: null,
       offsetX: 0,
       offsetY: 0,
-      width: 240,
+      width: 250,
       list: [
         {
           name: "测试节点",
@@ -315,8 +315,8 @@ export default {
     },
     startResize(event) {
       let newWidth = event.clientX;
-      if (newWidth < 240) {
-        newWidth = 240;
+      if (newWidth < 250) {
+        newWidth = 250;
       }
       this.width = newWidth
       eventBus.$emit('itemPanelResize', this.width);
