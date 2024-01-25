@@ -1,5 +1,8 @@
 <template>
   <div class="toolbar">
+    <!-- 添加返回按钮 -->
+    <!--    <i class="el-icon-arrow-left" title="返回" @click="handleReturn"></i>-->
+    <span class="view-name">酒店核心产能数据情况</span>
     <link
         rel="stylesheet"
         type="text/css"
@@ -18,6 +21,7 @@
         @click="handleRedo"
     ></i>
     <span class="separator"></span>
+    <span class="separator"></span>
     <i
         data-command="delete"
         class="command iconfont icon-delete-o"
@@ -25,6 +29,7 @@
         :class="selectedItem?'':'disable'"
         @click="handleDelete"
     ></i>
+    <span class="separator"></span>
     <span class="separator"></span>
     <i
         data-command="zoomIn"
@@ -51,6 +56,7 @@
         @click="handleResetZoom"
     ></i>
     <span class="separator"></span>
+    <span class="separator"></span>
     <i
         data-command="toBack"
         class="command iconfont icon-to-back"
@@ -74,9 +80,8 @@
         title="多选"
         @click="handleMuiltSelect"
     ></i>
-    <span class="separator"></span>
-    <span class="separator"></span>
-    <el-button @click="consoleData" type="primary" style="margin-left: 15px">保存</el-button>
+
+    <el-button @click="consoleData" type="primary" style="float: right;margin-right: 20px">保存</el-button>
   </div>
 </template>
 
@@ -109,6 +114,8 @@ export default {
     }
   },
   methods: {
+    handleReturn() {
+    },
     init() {
       const {editor, command} = this.$parent;
       this.editor = editor;
@@ -322,8 +329,20 @@ export default {
   position: absolute;
 }
 
+.toolbar .view-name {
+  display: inline-block;
+  width: 250px;
+  padding-left: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  -webkit-user-select: text; /* Chrome, Safari, Opera */
+  -moz-user-select: text; /* Firefox */
+  -ms-user-select: text; /* Internet Explorer/Edge */
+  user-select: text; /* 非前缀版本, 可能在未来的某些浏览器中支持 */
+}
+
 .toolbar .command:nth-of-type(1) {
-  margin-left: 24px;
+  margin-left: 15%;
 }
 
 .toolbar .command {
