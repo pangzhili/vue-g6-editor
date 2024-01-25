@@ -239,7 +239,7 @@ const trendNode = () => {
 
             // 绘制三条趋势线
             chart.line().position('time*value').color('type', ['#fdae6b', '#e6550d', '#31a354']).shape('smooth');
-            chart.point().position('time*value').color('type', ['#fdae6b', '#e6550d', '#31a354']).shape('circle');
+            chart.point().position('time*value').color('type', ['#fdae6b', '#e6550d', '#31a354']).shape('circle').size(3);
 
             // 渲染图表
             chart.render();
