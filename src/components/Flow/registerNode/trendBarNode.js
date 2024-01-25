@@ -152,6 +152,65 @@ const trendBarNode = () => {
             this.drawInPoints(cfg, group);
             this.drawOutPoints(cfg, group);
 
+            // 节点或边的颜色和名称如下
+            const legendData = [
+                {color: '#5B8FF9', name: 'today', text: '今天'},
+                {color: '#fdae6b', name: 'yesterday', text: '昨日'},
+                {color: '#e8684a', name: 'week', text: '上周'},
+            ];
+
+            // 计算图例的位置和大小
+            const legendX = width / 3; // 距离画布左侧的距离
+            const legendY = 45; // 距离画布顶部的距离
+            const itemGap = 30; // 图例项之间的间隔
+            const itemWidth = 10; // 图例项的宽度
+            const itemHeight = 10; // 图例项的高度
+
+            // 添加图例的容器
+            const legendGroup = group.addGroup({
+                id: 'legend-group',
+                // 其他需要的属性或样式
+            });
+
+            // 计算图例项的水平位置
+            let currentX = legendX;
+
+            // 遍历图例数据，创建图例项
+            legendData.forEach((item, index) => {
+                const legendItemGroup = legendGroup.addGroup({
+                    id: `legend-item-${item.name}`,
+                    // 其他需要的属性或样式
+                });
+
+                // 添加图例项的颜色块
+                legendItemGroup.addShape('rect', {
+                    attrs: {
+                        fill: item.color,
+                        x: currentX,
+                        y: legendY,
+                        width: itemWidth,
+                        height: itemHeight,
+                    },
+                    name: 'legend-color', // 可以用来事件过滤
+                });
+
+                // 添加图例项的文本
+                const textShape = legendItemGroup.addShape('text', {
+                    attrs: {
+                        text: item.text,
+                        fill: '#333', // 文本颜色
+                        x: currentX + itemWidth + 6, // 文本与颜色块之间留出一点空隙
+                        y: legendY + itemHeight + 2, // 文本的位置应与颜色块保持垂直对齐
+                    },
+                    name: 'legend-text', // 可以用来事件过滤
+                });
+
+                // 更新currentX，以便下一个图例项正确排列
+                // 计算文本的宽度，并加上后面的间隔
+                const textWidth = textShape.getBBox().width;
+                currentX += itemWidth + textWidth + itemGap;
+            });
+
             // 创建 G2 图表实例
             const chart = new Chart({
                 group,
@@ -234,7 +293,8 @@ const trendBarNode = () => {
                 .position('date*today')
                 .color('#5B8FF9')
                 .tooltip('date*today')
-                .style({radius: [2, 2, 0, 0]});
+                .style({radius: [2, 2, 0, 0]})
+            ;
 
             chart.line()
                 .position('date*yesterday')
