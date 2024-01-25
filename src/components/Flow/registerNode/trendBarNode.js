@@ -208,8 +208,8 @@ const trendBarNode = () => {
 
             // 在图表顶部添加文本标注
             chart.annotation().text({
-                position: ['25%', '-12%'],  // 位置设置为顶部中央，'5%' 用于稍微向下偏移
-                content: '数值',      // 这里填写您想要显示的文本
+                position: ['26%', '-12%'],
+                content: '数值',
                 style: {
                     fontSize: 11,         // 字体大小
                     textAlign: 'center',  // 文本居中
@@ -219,33 +219,28 @@ const trendBarNode = () => {
             });
 
             chart.annotation().text({
-                position: ['74%', '-12%'],  // 同样设置为顶部中央
-                content: '环比',           // 这里填写您想要显示的文本
+                position: ['74%', '-12%'],
+                content: '环比',
                 style: {
                     fontSize: 11,         // 字体大小
                     textAlign: 'center',  // 文本居中
                     fill: '#666',         // 文本颜色
                 },
-                offsetX: width / 4,       // 同样根据图表宽度进行水平偏移
+                offsetX: width / 4,       // 根据图表宽度进行水平偏移
             });
-
 
             // 绘制图表元素
             chart.interval()
                 .position('date*today')
                 .color('#5B8FF9')
                 .tooltip('date*today')
-                .style({radius: [2, 2, 0, 0]})
-                .label("今日")
-            ; // 设置柱状图顶部圆角
+                .style({radius: [2, 2, 0, 0]});
 
             chart.line()
                 .position('date*yesterday')
                 .color('#fdae6b')
                 .shape('smooth')
-                .tooltip('date*yesterday')
-                .label("今日")
-            ;
+                .tooltip('date*yesterday');
 
             chart.line()
                 .position('date*week')
@@ -273,15 +268,6 @@ const trendBarNode = () => {
                     stroke: '#e8684a',
                     lineWidth: 2,
                 });
-
-            // 配置图例
-            chart.legend({
-                position: 'top',
-                marker: {
-                    symbol: 'hyphen'
-                },
-                offsetY: 0
-            });
 
             chart.render();
 
