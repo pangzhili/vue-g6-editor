@@ -76,7 +76,7 @@
     ></i>
     <span class="separator"></span>
     <span class="separator"></span>
-    <el-button @click="consoleData" type="primary" style="margin-left: 15px">控制台输出数据</el-button>
+    <el-button @click="consoleData" type="primary" style="margin-left: 15px">保存</el-button>
   </div>
 </template>
 
