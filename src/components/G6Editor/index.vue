@@ -7,11 +7,11 @@
       <div style="height: 42px;"></div>
       <div class="bottom-container">
         <!--itempannel-->
-        <item-panel/>
+        <item-panel v-show="showFullScreen === 1 || showFullScreen === 2"/>
         <!--detailpannel-->
-        <detail-panel v-show="showFullScreen"/>
+        <detail-panel v-show="showFullScreen === 1"/>
         <!--miniMap-->
-        <minimap v-show="showFullScreen"/>
+        <minimap v-show="showFullScreen === 1"/>
         <!--page-->
         <page :height="height" :width="width" :data="data"/>
       </div>
@@ -70,15 +70,14 @@ export default {
     return {
       editor: {},
       command: null,
-      showFullScreen: true
+      showFullScreen: 1
     };
   },
   methods: {
     init() {
       this.editor = new Editor();
       this.command = new command(this.editor);
-    },
-
+    }
   }
 };
 </script>

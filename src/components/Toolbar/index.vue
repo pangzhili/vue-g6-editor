@@ -90,9 +90,8 @@
         class="command el-icon-rank"
         title="全屏"
         @click="handleFullScreen"
-        style="font-size: 15px"
+        :style="{ color: getFullScreenColor(showFullScreen),'font-size':15+'px' }"
     ></i>
-
     <el-button @click="saveData" type="primary" style="float: right;margin-right: 24px">保存</el-button>
     <el-button @click="closeView" type="info" style="float: right;margin-right:18px">关闭</el-button>
   </div>
@@ -115,7 +114,7 @@ export default {
       selectedItem: null,
       multiSelect: false,
       addGroup: false,
-      showFullScreen: true
+      showFullScreen: 1
     };
   },
   created() {
@@ -129,10 +128,24 @@ export default {
   },
   methods: {
     handleFullScreen() {
-      this.showFullScreen = !this.showFullScreen;
+      this.showFullScreen = this.showFullScreen + 1;
+      if (this.showFullScreen === 4) {
+        this.showFullScreen = 1;
+      }
       eventBus.$emit('fullScreen', this.showFullScreen);
     },
+    getFullScreenColor(value) {
+      switch (value) {
+        case 2:
+          return '#409EFF';
+        case 3:
+          return '#32CD32';
+        default:
+          return 'black';
+      }
+    },
     init() {
+      this.showFullScreen = 1
       const {editor, command} = this.$parent;
       this.editor = editor;
       this.command = command;
