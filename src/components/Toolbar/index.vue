@@ -86,6 +86,13 @@
         style="font-size: 15px"
     ></i>
     <i
+        data-command="clear"
+        class="command el-icon-download"
+        title="下载图片"
+        @click="handleDownloadImage"
+        style="font-size: 15px"
+    ></i>
+    <i
         data-command="fullScreen"
         class="command el-icon-rank"
         :title="this.showFullScreen === 1 ? '右侧全屏' : this.showFullScreen === 2 ? '左侧全屏' : '取消全屏'"
@@ -347,6 +354,10 @@ export default {
       // 重新绘制画布
       this.graph.paint();
     },
+    handleDownloadImage() {
+      this.graph.fitView(20)
+      this.graph.downloadImage("酒店核心产能数据情况", "white")
+    },
     // 保存数据
     saveData() {
       // eslint-disable-next-line no-console
@@ -386,7 +397,7 @@ export default {
 }
 
 .toolbar .command:nth-of-type(1) {
-  margin-left: 14%;
+  margin-left: 12%;
 }
 
 .toolbar .command {
