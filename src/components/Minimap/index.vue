@@ -1,6 +1,9 @@
 <template>
   <div id="navigator" :style="{width:width + 'px'}">
-    <div class="pannel-title">导航器</div>
+    <div class="pannel-title">
+      导航器
+      <span style="float: right;margin-right: 10px">{{ getZoom }}</span>
+    </div>
     <div id="minimap" class="minimap" ref="minimap"></div>
   </div>
 </template>
@@ -18,6 +21,15 @@ export default {
       graph: null,
       width: 200
     };
+  },
+  computed: {
+    getZoom() {
+      if (this.graph) {
+        return `${Math.round(this.graph.getZoom() * 100)}%`;
+      } else {
+        return '100%';
+      }
+    }
   },
   created() {
     this.bindEvent();
