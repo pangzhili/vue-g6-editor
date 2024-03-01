@@ -26,7 +26,6 @@ export default class Editor {
     }
 
     add(type, item) {
-        console.log(item);
         this.graph.add(type, item)
     }
 
@@ -38,4 +37,5 @@ export default class Editor {
         const node = this.graph.findById(item.id)
         this.graph.remove(node)
     }
+
 }

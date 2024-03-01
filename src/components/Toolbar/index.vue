@@ -1,6 +1,6 @@
 <template>
   <div class="toolbar">
-    <span class="view-name">酒店核心产能数据情况</span>
+    <span class="view-name">qq</span>
     <link
         rel="stylesheet"
         type="text/css"
@@ -356,7 +356,7 @@ export default {
     },
     handleDownloadImage() {
       this.graph.fitView(20)
-      this.graph.downloadImage("酒店核心产能数据情况", "white")
+      this.graph.downloadImage("aa", "white")
     },
     // 保存数据
     saveData() {

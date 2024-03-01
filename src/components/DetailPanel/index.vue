@@ -63,10 +63,12 @@ export default {
     },
     startResize(event) {
       const newWidth = document.documentElement.clientWidth - event.clientX;
-      if (newWidth > 200) { // 200px 是最小宽度
+      if (newWidth > 200) {
+        // 200px 是最小宽度
         this.width = newWidth;
       } else {
-        this.width = 200; // 如果计算的新宽度小于200px，则保持200px不变
+        // 如果计算的新宽度小于200px，则保持200px不变
+        this.width = 200;
       }
       eventBus.$emit('panelResize', this.width);
     },

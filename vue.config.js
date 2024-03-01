@@ -33,8 +33,8 @@ module.exports = {
         }
     },
     chainWebpack(config) {
-        config.plugins.delete('preload') // TODO: need test
-        config.plugins.delete('prefetch') // TODO: need test
+        config.plugins.delete('preload')
+        config.plugins.delete('prefetch')
         config.module
             .rule('svg')
             .exclude.add(resolve('src/icons'))

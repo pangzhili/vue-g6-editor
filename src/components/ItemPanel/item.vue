@@ -135,11 +135,11 @@ export default {
           outPoints: [[1, 0.5]],
           isDoingStart: true,
           id: 58,
-          name: "国内酒店抵扣有效订单比（创单）",
-          enName: "hotel_mile_sorders_rate",
+          name: "指标体系测试指标1",
+          enName: "指标体系测试指标1",
           groupType: 3,
           period: '1h',
-          card: {value: "109.00", dodRate: "-209.68%", wowRate: "430.42%", hohRate: "230.03%", time: "14:30 - 14:35"},
+          card: {value: "23.00", dodRate: "-29.68%", wowRate: "0.42%", hohRate: "20.03%", time: "14:30 - 14:35"},
           viewComparison: ["dod", "wow"],
           table: {},
           trend: {},
@@ -157,72 +157,71 @@ export default {
           outPoints: [[1, 0.5]],
           isDoingStart: true,
           id: 53,
-          name: "国内酒店抵扣有效订单比（离店）",
-          enName: "hotel_mile_sorders",
+          name: "指标体系测试指标2",
+          enName: "指标体系测试指标1",
           groupType: 3,
           period: '1d',
-          card: {value: "109.00", dodRate: "-209.68%", wowRate: "430.42%", hohRate: "230.03%", time: "14:30 - 14:35"},
           viewComparison: ["dod", "wow"],
           table: {},
           trend: {},
           tableData: [{
             timePeriod: "00:05",
-            value: "5.53%",
+            value: "2.53%",
             hohRate: "--",
-            dodRate: "-1.0%",
-            wowRate: "-0.75%"
+            dodRate: "-11.0%",
+            wowRate: "-10.75%"
           }, {
             timePeriod: "00:10",
-            value: "6.77%",
+            value: "6.17%",
             hohRate: "--",
-            dodRate: "2.13%",
-            wowRate: "1.21%"
+            dodRate: "3.13%",
+            wowRate: "2.21%"
           }, {
             timePeriod: "00:15",
-            value: "5.47%",
+            value: "4.47%",
             hohRate: "--",
-            dodRate: "-1.74%",
-            wowRate: "-0.52%"
+            dodRate: "-5.74%",
+            wowRate: "-0.56%"
           }, {
             timePeriod: "00:20",
-            value: "5.58%",
+            value: "10.58%",
             hohRate: "--",
-            dodRate: "-1.16%",
-            wowRate: "-1.08%"
+            dodRate: "-11.16%",
+            wowRate: "-1.58%"
           }, {
             timePeriod: "00:25",
-            value: "4.91%",
+            value: "41.91%",
             hohRate: "--",
-            dodRate: "-1.88%",
-            wowRate: "-1.16%"
+            dodRate: "-11.88%",
+            wowRate: "-13.16%"
           }, {
             timePeriod: "00:30",
-            value: "5.51%",
+            value: "51.51%",
             hohRate: "--",
-            dodRate: "0.02%",
-            wowRate: "0.15%"
+            dodRate: "10.02%",
+            wowRate: "20.15%"
           }, {
             timePeriod: "00:35",
-            value: "5.87%",
+            value: "15.87%",
             hohRate: "--",
-            dodRate: "-0.28%",
-            wowRate: "-1.48%"
+            dodRate: "-10.28%",
+            wowRate: "-11.48%"
           }, {
             timePeriod: "00:40",
-            value: "5.55%",
+            value: "15.55%",
             hohRate: "--",
-            dodRate: "0.05%",
-            wowRate: "-1.61%"
+            dodRate: "10.05%",
+            wowRate: "-1161%"
           }, {
             timePeriod: "00:45",
-            value: "6.22%",
+            value: "26.22%",
             hohRate: "--",
-            dodRate: "0.31%",
-            wowRate: "-0.86%"
+            dodRate: "20.31%",
+            wowRate: "-20.86%"
           },]
         },
         {
-          label: "文本卡",
+          label: "趋势图",
           size: "690*380",
           type: "node",
           x: 0,
@@ -234,19 +233,18 @@ export default {
           outPoints: [[1, 0.5]],
           isDoingStart: true,
           id: 58,
-          name: "国内酒店抵扣有效订-趋势图",
-          enName: "hotel_mile_sorders_rate",
+          name: "指标体系测试指标3",
+          enName: "指标体系测试指标3",
           groupType: 3,
           period: '1h',
-          card: {value: "109.00", dodRate: "-209.68%", wowRate: "430.42%", hohRate: "230.03%", time: "14:30 - 14:35"},
           viewComparison: ["dod", "wow"],
           table: {},
           trend: {
             legendData: ["昨日", "上时段", "今日"],
             aliasData: ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00"],
-            todayData: ["617.00", "343.00", "180.00", "126.00", "71.00", "84.00", "182.00", "343.00", "657.00", "920.00", "1089.00", "1257.00", "1141.00"],
-            periodData: ["0.00", "617.00", "343.00", "180.00", "126.00", "71.00", "84.00", "182.00", "343.00", "657.00", "920.00", "1089.00", "1257.00"],
-            yesterdayData: ["523.00", "314.00", "164.00", "93.00", "74.00", "92.00", "197.00", "371.00", "674.00", "992.00", "1140.00", "1355.00", "1181.00"],
+            todayData: ["7.00", "33.00", "180.00", "16.00", "71.00", "84.00", "182.00", "343.00", "657.00", "920.00", "1089.00", "1257.00", "141.00"],
+            periodData: ["12.00", "617.00", "343.00", "180.00", "16.00", "71.00", "84.00", "12.00", "343.00", "657.00", "920.00", "1089.00", "157.00"],
+            yesterdayData: ["23.00", "314.00", "164.00", "93.00", "74.00", "92.00", "197.00", "371.00", "674.00", "992.00", "110.00", "135.00", "181.00"],
             weekData: null
           }
         },
@@ -262,33 +260,31 @@ export default {
           inPoints: [[0, 0.5]],
           outPoints: [[1, 0.5]],
           isDoingStart: true,
-
-          card: {value: "109.00", dodRate: "-209.68%", wowRate: "430.42%", hohRate: "230.03%", time: "14:30 - 14:35"},
           viewComparison: ["dod", "wow"],
           table: {},
           trend: {
             legendData: ["昨日环比", "上周同期环比", "数值"],
             aliasData: ["2024-01-18", "2024-01-19", "2024-01-20", "2024-01-21", "2024-01-22", "2024-01-23", "2024-01-24", "2024-01-25", "2024-01-26", "2024-01-27", "2024-01-28", "2024-01-29", "2024-01-30"],
-            todayData: ["6353.00", "7319.00", "6875.00", "7423.00", "6713.00", "6755.00", "7550.00", "7189.00", "6622.00", "4922.00", "4987.00", "4257.00", "3535.00"],
+            todayData: ["353.00", "739.00", "687.00", "723.00", "673.00", "675.00", "750.00", "719.00", "622.00", "492.00", "487.00", "4257.00", "3535.00"],
             periodData: null,
-            yesterdayData: ["6.79", "15.21", "-6.07", "7.97", "-9.56", "0.63", "11.77", "-4.78", "-7.89", "-25.67", "1.32", "-14.64", "-16.96"],
-            weekData: ["112.40", "86.14", "53.22", "38.05", "26.92", "22.04", "26.91", "13.16", "-9.52", "-28.41", "-32.82", "-36.59", "-47.67"]
+            yesterdayData: ["16.79", "15.21", "-6.07", "7.97", "-9.56", "0.63", "11.77", "-4.78", "-7.89", "-5.67", "1.32", "-14.64", "-16.96"],
+            weekData: ["12.40", "86.14", "3.22", "8.05", "6.92", "2.04", "6.91", "3.16", "-19.52", "-8.41", "-2.82", "-36.59", "-47.67"]
           },
-          createBy: "高升",
+          createBy: "createBy",
           createTime: "2024-01-10 16:42:17",
           deriveId: null,
-          description: "国内酒店里程抵扣有效单占比",
-          enName: "hotel_mile_sorders_rate",
+          description: "指标体系测试指标4",
+          enName: "指标体系测试指标4",
           groupType: 3,
           hasEdit: true,
           hasUse: true,
           hasView: true,
           id: 58,
           level: "L1",
-          name: "国内酒店里程抵扣有效单占比fasdfsafdasfdsf",
-          owner: "高升(41137)",
-          ownerId: "41137",
-          ownerName: "高升",
+          name: "指标体系测试指标4",
+          owner: "owner",
+          ownerId: "ownerId",
+          ownerName: "owner",
           params: {},
           period: "1h",
           quotaIdList: null,
@@ -298,7 +294,7 @@ export default {
           timeDimensionId: null,
           timeDimensionName: '创建时间',
           quotaType: 3,
-          updateBy: "高升",
+          updateBy: "owner",
           updateTime: "2024-01-10 16:42:17",
           usageTime: "2024-01-10 16:42:20",
         },
